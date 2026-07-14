@@ -1,2 +1,29 @@
-Please add your pseudocode to this file
-And a written explanation of your solution
+Pseudocode:
+- Create an empty result array.
+- Loop over the string with index i (the start of each substring).
+  - For each i, create an empty string "current".
+  - Loop over the string with index j, starting at i and going to the end.
+    - Append string[j] to current.
+    - Push a copy of current into result.
+- Return result.
+
+Explanation:
+The outer loop picks every possible starting index in the string. The
+inner loop starts at that same index and extends one character at a
+time toward the end of the string, appending each character to a
+running "current" string. Every time a character is appended, that
+growing string is a valid consecutive substring starting at i, so it's
+pushed into the results array immediately. Because j never jumps
+backward or skips characters, every substring generated is guaranteed
+to be made of consecutive characters (e.g. 'ac' from 'abc' can never
+be produced). The nested loop order also naturally returns the
+substrings in the order they appear: all substrings starting at index
+0 first, then all starting at index 1, and so on.
+
+Time Complexity: O(n^2)
+There are two nested loops, each of which can run up to n times in the
+worst case (n = length of the input string), giving O(n * n) = O(n^2)
+substring-generating steps.
+
+Space Complexity: O(n^2)
+The result array holds n(n+1)/2 substrings in total, which is O(n^2).
